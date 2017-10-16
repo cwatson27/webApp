@@ -1,7 +1,0 @@
-0:0:0:0:0:0:0:1 - - [05/Aug/2017:16:51:08 -0400] "GET /table1 HTTP/1.1" 200 4128 http-bio-8080-exec-1 1089
-0:0:0:0:0:0:0:1 - - [05/Aug/2017:16:51:08 -0400] "GET /favicon.ico HTTP/1.1" 404 949 http-bio-8080-exec-2 4
-0:0:0:0:0:0:0:1 - - [05/Aug/2017:16:51:12 -0400] "GET /table2?name=Name1 HTTP/1.1" 200 4366 http-bio-8080-exec-3 152
-0:0:0:0:0:0:0:1 - - [05/Aug/2017:16:51:16 -0400] "GET /table2?name=Name2 HTTP/1.1" 200 4476 http-bio-8080-exec-4 11
-0:0:0:0:0:0:0:1 - - [05/Aug/2017:16:51:21 -0400] "GET /table2?name=Name1 HTTP/1.1" 200 4366 http-bio-8080-exec-5 11
-0:0:0:0:0:0:0:1 - - [05/Aug/2017:16:51:24 -0400] "GET /table2?name=Name2 HTTP/1.1" 200 4476 http-bio-8080-exec-6 16
-0:0:0:0:0:0:0:1 - - [05/Aug/2017:16:51:30 -0400] "GET /table2?name=Name1 HTTP/1.1" 200 4366 http-bio-8080-exec-7 18

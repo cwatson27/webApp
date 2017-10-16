@@ -1,4 +1,4 @@
-package com.in28minutes.login;
+package com.faaApp.login;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -6,18 +6,18 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class JDBCConnection {
+public class OracleConnection {
 	String userName;
 	String password;
 	String dbUrl;
 	Connection connection;
 
-    public JDBCConnection(String userName, String password, String dbUrl) {
+    public OracleConnection(String userName, String password, String dbUrl) {
     	this.userName = userName;
     	this.password = password;
     	this.dbUrl = dbUrl;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("oracle.jdbc.driver.OracleDriver");
 
         } catch (ClassNotFoundException e) {
 
@@ -27,7 +27,7 @@ public class JDBCConnection {
         }
         connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/users?autoReconnect=true&useSSL=false","root", "copper10");
+            connection = DriverManager.getConnection(dbUrl,userName,password);
 
         } catch (SQLException e) {
             System.out.println("Connection Failed");
@@ -39,10 +39,14 @@ public class JDBCConnection {
         }
     }
     
-    public ResultSet selectQuery(String sql) throws SQLException {
+    public ResultSet queryTable(String sql) throws SQLException {
     	PreparedStatement preparedStatement = connection.prepareStatement(sql);
-    	ResultSet rs = preparedStatement.executeQuery(sql);
+    	ResultSet rs = preparedStatement.executeQuery();
     	return rs;
+    }
+    public void updateTable(String sql) throws SQLException {
+    	PreparedStatement preparedStatement = connection.prepareStatement(sql);
+    	preparedStatement.executeUpdate();
     }
 }
 

@@ -3,173 +3,118 @@
 <html>
 <head>
 <title>FAA Webapp</title>
-
-<style>
-	select {
-		font-family:Arial, Helvetica, sans-serif;
-		color:#666;
-		font-size:16px;
-		text-shadow: 1px 1px 0px #fff;
-		background:#fafafa;
-		width: 20%;
-		height: 5%;
-    	margin-left: 15%;
-    	margin-right: auto;
-		border:#ccc 1px solid;
-		-moz-border-radius:3px;
-		-webkit-border-radius:3px;
-		border-radius:3px;
-		-moz-box-shadow: 0 1px 2px #d1d1d1;
-		-webkit-box-shadow: 0 1px 2px #d1d1d1;
-		box-shadow: 0 1px 2px #d1d1d1;
-	}
-	input {
-		font-family:Arial, Helvetica, sans-serif;
-		color:#666;
-		font-size:16px;
-		text-shadow: 1px 1px 0px #fff;
-		background:#fafafa;
-		width: 7%;
-		height: 5%;
-    	margin-left: 1%;
-    	margin-right: auto;
-		border:#ccc 1px solid;
-		-moz-border-radius:3px;
-		-webkit-border-radius:3px;
-		border-radius:3px;
-		-moz-box-shadow: 0 1px 2px #d1d1d1;
-		-webkit-box-shadow: 0 1px 2px #d1d1d1;
-		box-shadow: 0 1px 2px #d1d1d1;
-	}
-	table a:link {
-		color: #666;
-		font-weight: bold;
-		text-decoration:none;
-	}
-	table a:visited {
-		color: #999999;
-		font-weight:bold;
-		text-decoration:none;
-	}
-	table a:active,
-	table a:hover {
-		color: #bd5a35;
-		text-decoration:underline;
-	}
-	table {
-		padding-top: 10px solid white;
-		font-family:Arial, Helvetica, sans-serif;
-		color:#666;
-		font-size:16px;
-		text-shadow: 1px 1px 0px #fff;
-		background:#eaebec;
-		width: 70%;
-    	margin-left: auto;
-    	margin-right: auto;
-		border:#ccc 1px solid;
-
-		-moz-border-radius:3px;
-		-webkit-border-radius:3px;
-		border-radius:3px;
-
-		-moz-box-shadow: 0 1px 2px #d1d1d1;
-		-webkit-box-shadow: 0 1px 2px #d1d1d1;
-		box-shadow: 0 1px 2px #d1d1d1;
-	}
-	table th {
-		padding:21px 25px 22px 25px;
-		border-top:1px solid #fafafa;
-		border-bottom:1px solid #e0e0e0;
-
-		background: #ededed;
-		background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
-		background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
-	}
-	table th:first-child {
-		text-align: left;
-		padding-left:20px;
-	}
-	table tr:first-child th:first-child {
-		-moz-border-radius-topleft:3px;
-		-webkit-border-top-left-radius:3px;
-		border-top-left-radius:3px;
-	}
-	table tr:first-child th:last-child {
-		-moz-border-radius-topright:3px;
-		-webkit-border-top-right-radius:3px;
-		border-top-right-radius:3px;
-	}
-	table tr {
-		text-align: center;
-		padding-left:20px;
-	}
-	table td:first-child {
-		text-align: left;
-		padding-left:20px;
-		border-left: 0;
-	}
-	table td {
-		padding:18px;
-		border-top: 1px solid #ffffff;
-		border-bottom:1px solid #e0e0e0;
-		border-left: 1px solid #e0e0e0;
-
-		background: #fafafa;
-		background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
-		background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
-	}
-	table tr.even td {
-		background: #f6f6f6;
-		background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
-		background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
-	}
-	table tr:last-child td {
-		border-bottom:0;
-	}
-	table tr:last-child td:first-child {
-		-moz-border-radius-bottomleft:3px;
-		-webkit-border-bottom-left-radius:3px;
-		border-bottom-left-radius:3px;
-	}
-	table tr:last-child td:last-child {
-		-moz-border-radius-bottomright:3px;
-		-webkit-border-bottom-right-radius:3px;
-		border-bottom-right-radius:3px;
-	}
-	table tr:hover td {
-		background: #f2f2f2;
-		background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
-		background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
-	}
-</style>
+<link rel="stylesheet" type = "text/css" href="resources/css/style.css"/>
+<script src="resources/javascript/moment.js" type="text/javascript">
+</script>
+<script src="resources/javascript/javascript.js" type="text/javascript">
+</script>
 </head>
-
 <body>
+	<div id="title">
+		<img id="logo" src="resources/images/logo.png" alt="FAA Logo">
+		IPPT Fix Search
+	</div> 
 	<form action="/table2">
- 	 	<form:select name="name" path="employee" items="${employee}"></form:select>
- 	 	<input type="submit" value="Submit">
+		<div id="searchInput">
+  			Search Term:<br>
+  			<input type="text" name="searchText" >
+  		</div>
+  		<div id=searchSubmit>
+  			<br><input type="radio" name="searchType" value="5 LNC" onclick="javascript:show1()" checked>Search 5 LNC Database<br>
+ 			<input type="radio" name="searchType" value="FAA Reserved" onclick="javascript:show2()">Search FAA Reserved<br>
+  			<input id="submitBtn" type="submit" value="Search">
+  		</div>
+  		<div id="topFormSep">
+  			<div style="display: inline-block;margin-left:45px">
+  					Latitude: <br>
+  					Longitude:
+  			</div>
+  			<div id="stateCalc">
+  					<input type="text" name="latDegrees" id="latDegrees" size="3"> -
+  					<input type="text" name="latMinutes" id="latMinutes" size="3"> -
+  					<input type="text" name="latSeconds" id="latSeconds" size="8">
+  					<select id="northSouth">
+  						<option value="north">North</option>
+  						<option value="south">South</option>
+					</select> <br>
+
+  					<input type="text" name="lonDegrees" id="lonDegrees" size="3"> -
+  					<input type="text" name="lonMinutes" id="lonMinutes" size="3"> -
+  					<input type="text" name="lonSeconds" id="lonSeconds" size="8">
+  					<select id="westEast">
+  						<option value="west">West</option>
+  						<option value="east">East</option>
+					</select> <br>
+  					<input id="calcStateBtn" type="submit" value="Calculate State">
+  			</div>
+ 		</div>
+  		<div id="popup" class="hide">
+  			Enter Keywords for Reservee, separated by a space.
+		</div>
 	</form>
-	
-	<table cellspacing='0'> 
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>File Name</th>
-			<th>Date</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<c:forEach items = "${fileName}" var = "item">
+	<div id="tableDiv" style = "overflow-y: auto; height:400px;"> 
+	<table> 
+		<thead>
 			<tr>
-				<td>${name}</td>
-				<td>${item}</td>
-				<td>Yes</td>
-			</tr><!-- Table Row -->
-		</c:forEach>
-	</tbody>
-
-</table>
-	
+				<th>Name</th>
+				<th>Database</th>
+				<th>ICAO Region</th>
+				<th>Country</th>
+				<th>State</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+				<th>Comments</th>
+				<th>Database Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items = "${fixNames}" var = "item">
+				<tr>
+					<td>${item.id}</td>
+					<td>${item.database}</td>
+					<td>${item.region}</td>
+					<td>${item.country}</td>
+					<td>${item.state}</td>
+					<td class="location" headers="Latitude">${item.latitude}</td>
+					<td class="location" headers="Longitude">${item.longitude}</td>
+					<td>${item.comments}</td>
+					<td>${item.databaseDate}</td>
+				</tr><!-- Table Row -->
+			</c:forEach>
+		</tbody>
+	</table>
+	</div>
+	<br> <br>
+	<div id="access">
+  		<input id = "passwordBtn" class="line" type="button" value="Update Database" onclick="javascript:checkPassword()">
+  		Password:
+  		<form id="passwordForm" class="line" action="#" onsubmit="javascript: handle(event)">
+  			<input type="text" name="password" id = "password" >
+  		</form>
+ 		<div id="popup4" class="hide">
+ 			Invalid password
+		</div>
+  	</div>
+	<div id="loadAlign">
+		<form id="loadTool" class="hide">
+			<div id="dateInput">
+  				<br>Date of Data (mm/dd/yyyy):<br>
+  				<input type="text" name="dataDate" id = "dataDate" >
+  			</div>
+  			<input type="hidden" id="dataType" name="dataType">
+  			<div id="toolSubmit">
+  				<input class="toolBtn" type="button" value="Load NGA" onclick="javascript:loadNGA()">
+  				<input class="toolBtn" type="button" value="Load Jeppesen" onclick="javascript:loadJepp()">
+  				<input class="toolBtn" type="button" value="Load AVNIS" onclick="javascript:loadAVNIS()">
+  				<input class="toolBtn" type="button" value="Load NavCanada" onclick="javascript:loadNavCan()">
+  				<input class="toolBtn" type="button" value="Load ICARD" onclick="javascript:loadICARD()">
+  			</div>
+  			<div id="popup1" class="hide">
+  				Invalid date
+			</div>
+			<div id="popup3" class="hide"></div>
+		</form>
+	</div>
+	<body onload="javascript:clickable()" >
 </body>
 </html>

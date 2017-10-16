@@ -1,0 +1,6 @@
+com\faaApp\login\Fix.class
+com\faaApp\login\AccessConnection.class
+com\faaApp\login\MainController.class
+com\faaApp\login\OracleConnection.class
+com\faaApp\login\Main.class
+com\faaApp\login\Updater.class
