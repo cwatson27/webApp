@@ -12,12 +12,12 @@
 <body>
 	<div id="title">
 		<img id="logo" src="resources/images/logo.png" alt="FAA Logo">
-		IPPT Fix Search
+		<span id="title1">IPPT</span> <span id="title2">Fix Search</span>
 	</div> 
-	<form action="/table2">
+	<form id="primaryForm" action="/fix_Search_Results">
 		<div id="searchInput">
   			Search Term:<br>
-  			<input type="text" name="searchText" >
+  			<input type="text" name="searchText" value=${searchText} >
   		</div>
   		<div id=searchSubmit>
   			<br><input type="radio" name="searchType" value="5 LNC" onclick="javascript:show1()" checked>Search 5 LNC Database<br>
@@ -45,14 +45,14 @@
   						<option value="west">West</option>
   						<option value="east">East</option>
 					</select> <br>
-  					<input id="calcStateBtn" type="submit" value="Calculate State">
+  					<input id="calcStateBtn" type="button" value="Estimate State" onclick="javascript:calcState()">
   			</div>
  		</div>
   		<div id="popup" class="hide">
   			Enter Keywords for Reservee, separated by a space.
 		</div>
 	</form>
-	<div id="tableDiv" style = "overflow-y: auto; height:400px;"> 
+	<div id="tableDiv"  height:400px;"> 
 	<table> 
 		<thead>
 			<tr>
