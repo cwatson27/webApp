@@ -4,10 +4,9 @@
 <head>
 <title>FAA Webapp</title>
 <link rel="stylesheet" type = "text/css" href="resources/css/style.css"/>
-<script src="resources/javascript/moment.js" type="text/javascript">
-</script>
-<script src="resources/javascript/javascript.js" type="text/javascript">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="resources/javascript/moment.js" type="text/javascript"></script>
+<script src="resources/javascript/javascript.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="title">
@@ -17,11 +16,11 @@
 	<form id="primaryForm" action="/fix_Search_Results">
 		<div id="searchInput">
   			Search Term:<br>
-  			<input type="text" name="searchText" value=${searchText} >
+  			<input type="text" name="searchText" value=${searchText}>
   		</div>
   		<div id=searchSubmit>
-  			<br><input type="radio" name="searchType" value="5 LNC" onclick="javascript:show1()" checked>Search 5 LNC Database<br>
- 			<input type="radio" name="searchType" value="FAA Reserved" onclick="javascript:show2()">Search FAA Reserved<br>
+  			<br><input type="radio" name="searchType" value="5 LNC" onclick="javascript:hidePopupReserved()" checked>Search 5 LNC Database<br>
+ 			<input type="radio" name="searchType" value="FAA Reserved" onclick="javascript:showPopupReserved()">Search FAA Reserved<br>
   			<input id="submitBtn" type="submit" value="Search">
   		</div>
   		<div id="topFormSep">
@@ -46,13 +45,13 @@
   						<option value="east">East</option>
 					</select> <br>
   					<input id="calcStateBtn" type="button" value="Estimate State" onclick="javascript:calcState()">
+  					<span id="stateResult"></span>
   			</div>
  		</div>
-  		<div id="popup" class="hide">
-  			Enter Keywords for Reservee, separated by a space.
-		</div>
+  		
 	</form>
-	<div id="tableDiv"  height:400px;"> 
+	<span id="popupReserved" class="hide">Enter Keywords for Reservee, separated by a space.</span>
+	<div id="tableDiv"> 
 	<table> 
 		<thead>
 			<tr>
@@ -70,15 +69,15 @@
 		<tbody>
 			<c:forEach items = "${fixNames}" var = "item">
 				<tr>
-					<td>${item.id}</td>
-					<td>${item.database}</td>
-					<td>${item.region}</td>
-					<td>${item.country}</td>
-					<td>${item.state}</td>
-					<td class="location" headers="Latitude">${item.latitude}</td>
-					<td class="location" headers="Longitude">${item.longitude}</td>
-					<td>${item.comments}</td>
-					<td>${item.databaseDate}</td>
+					<td title="Name">${item.id}</td>
+					<td title="Database">${item.database}</td>
+					<td title="ICAO Region">${item.region}</td>
+					<td title="Country">${item.country}</td>
+					<td title="State">${item.state}</td>
+					<td class="location" headers="Latitude" title="Click to find State">${item.latitude}</td>
+					<td class="location" headers="Longitude" title="Click to find State">${item.longitude}</td>
+					<td title="Comments">${item.comments}</td>
+					<td title="Database Date">${item.databaseDate}</td>
 				</tr><!-- Table Row -->
 			</c:forEach>
 		</tbody>
@@ -95,7 +94,9 @@
  			Invalid password
 		</div>
   	</div>
-	<div id="loadAlign">
+  	
+  	<div class="center">
+	<div id="loadAlign"class="formField">
 		<form id="loadTool" class="hide">
 			<div id="dateInput">
   				<br>Date of Data (mm/dd/yyyy):<br>
@@ -109,11 +110,12 @@
   				<input class="toolBtn" type="button" value="Load NavCanada" onclick="javascript:loadNavCan()">
   				<input class="toolBtn" type="button" value="Load ICARD" onclick="javascript:loadICARD()">
   			</div>
-  			<div id="popup1" class="hide">
+  			<div id="popupDateError" class="hide">
   				Invalid date
 			</div>
-			<div id="popup3" class="hide"></div>
+			<span id="updateComplete" class="hide"></span>
 		</form>
+		</div>
 	</div>
 	<body onload="javascript:clickable()" >
 </body>
